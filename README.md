@@ -32,3 +32,8 @@ It uses the `say` command available on macOS system.
 
 - `voice`: The voice to use for the `say` command. Default is `Jamie`, a voice available on macOS.
 - `show_notification`: Whether to show a notification in Neovim when the text is read aloud. Default is `true`.
+
+## Usage
+
+Select the text you want to read aloud in visual mode and press `<c-t>`. The selected text will be
+passed to the `say` command, and it will be read aloud using the specified voice.

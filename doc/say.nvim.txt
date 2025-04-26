@@ -1,0 +1,49 @@
+*say.nvim.txt*    Say.nvim Plugin Documentation
+
+==============================================================================
+INTRODUCTION                                                    *say.nvim*
+
+Say.nvim is a simple plugin for Neovim that allows you to use the `say`
+command to read text aloud. It uses the `say` command available on macOS.
+
+==============================================================================
+INSTALLATION                                                    *say.nvim-install*
+
+1. Using Lazy.nvim:
+
+>lua
+    {
+      'runih/say.nvim',
+      lazy = true,
+      keys = {
+        {
+          mode = { 'v' },
+          '<c-t>',
+          function()
+            require('say').selected()
+          end,
+          desc = 'Say selected text',
+        },
+      },
+      opts = {
+        voice = 'Jamie',
+        show_notification = true,
+      },
+    }
+
+==============================================================================
+OPTIONS                                                         *say.nvim-options*
+
+- *voice*: The voice to use for the `say` command. Default is `Jamie`, a voice
+  available on macOS.
+
+- *show_notification*: Whether to show a notification in Neovim when the text
+  is read aloud. Default is `true`.
+
+==============================================================================
+USAGE                                                           *say.nvim-usage*
+
+Select the text you want to read aloud in visual mode and press `<c-t>`. The
+selected text will be passed to the `say` command, and it will be read aloud
+using the specified voice.
+vim:tw=78:ts=8:ft=help:norl:

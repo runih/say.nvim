@@ -1,7 +1,0 @@
-================================================================================
-                                                                        *say*
-
-This plugin is a simple wrapper around the MacOs `say` command.
-
-
-vim:tw=78:ts=8:ft=help:norl:
