@@ -1,4 +1,4 @@
-local voice = "Alex"
+local voice = "Jamie"
 local show_notification = true
 local M = {}
 local is_talking = false
