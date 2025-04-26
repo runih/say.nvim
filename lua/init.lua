@@ -47,11 +47,11 @@ function M.message(msg)
 		end
 		return
 	end
-	is_talking = true
-	if show_notification then
-		vim.notify("Starting speaking...", vim.log.levels.INFO, { title = "Say.nvim" })
-	end
 	if vim.fn.executable("say") == 1 then
+		is_talking = true
+		if show_notification then
+			vim.notify("Starting speaking...", vim.log.levels.INFO, { title = "Say.nvim" })
+		end
 		vim.loop.spawn("say", {
 			args = { "-v", voice, msg },
 		}, function(code, signal)
