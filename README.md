@@ -5,11 +5,20 @@ It uses the `say` command available on macOS system.
 
 ## Installation
 
+requires:
+
+- MacOS
+- Neovim 0.11 or higher.
+- [Telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+
 ### Using Lazy.nvim
 
 ```lua
 {
   'runih/say.nvim',
+  dependencies = {
+    'nvim-telescope/telescope.nvim',
+  },
   lazy = true,
   keys = {
     {
@@ -37,3 +46,8 @@ It uses the `say` command available on macOS system.
 
 Select the text you want to read aloud in visual mode and press `<c-t>`. The selected text will be
 passed to the `say` command, and it will be read aloud using the specified voice.
+
+It is possible to change the voice. Press `<leader>tv` to change the voice. You can switch between the different languages.
+
+*Note*: Remember to download the voices you want to use. You can do this by going to System Preferences > Accessibility > Speech
+and selecting the voice you want to download. Once downloaded, you can use it in the plugin.
