@@ -2,6 +2,7 @@ local voice = "Jamie"
 local show_notification = true
 local M = {}
 local is_talking = false
+local say_process = nil
 
 --- Sends the currently selected text in visual mode to the `message` function.
 -- If no selection is found, it prints an error message and exits.
@@ -52,9 +53,10 @@ function M.message(msg)
 		if show_notification then
 			vim.notify("Starting speaking...", vim.log.levels.INFO, { title = "say.nvim" })
 		end
-		vim.loop.spawn("say", {
+		say_process = vim.loop.spawn("say", {
 			args = { "-v", voice, "'" .. msg .. "'" },
 		}, function(code, signal)
+			say_process = nil
 			if code ~= 0 then
 				if show_notification then
 					vim.notify(
@@ -74,6 +76,21 @@ function M.message(msg)
 	else
 		if show_notification then
 			vim.notify("Error: say command not found.", vim.log.levels.ERROR, { title = "say.nvim" })
+		end
+	end
+end
+
+function M.stop_speaking()
+	if say_process then
+		vim.loop.process_kill(say_process, "sigterm") -- Terminate the process
+		say_process = nil
+		is_talking = false
+		if show_notification then
+			vim.notify("Speech stopped.", vim.log.levels.INFO, { title = "say.nvim" })
+		end
+	else
+		if show_notification then
+			vim.notify("No active speech to stop.", vim.log.levels.WARN, { title = "say.nvim" })
 		end
 	end
 end
@@ -156,6 +173,7 @@ function M.setup(opts)
 	end
 	vim.keymap.set({ "v" }, "<C-t>", M.selected, { desc = "Send selected text to message" })
 	vim.keymap.set({ "n" }, "<leader>tv", M.show_voices_dialog, { desc = "Get voices" })
+	vim.keymap.set({ "n", "v" }, "<S-C-t>", M.stop_speaking, { desc = "Stop speaking" })
 	if show_notification then
 		vim.notify("say.nvim loaded with voice: " .. voice, vim.log.levels.INFO, { title = "say.nvim" })
 	end

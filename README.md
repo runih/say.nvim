@@ -51,3 +51,5 @@ It is possible to change the voice. Press `<leader>tv` to change the voice. You 
 
 *Note*: Remember to download the voices you want to use. You can do this by going to System Preferences > Accessibility > Speech
 and selecting the voice you want to download. Once downloaded, you can use it in the plugin.
+
+You can stop the ongoing speech by pressing `<s-c-t>`. This will stop the `say` command and cancel the speech.

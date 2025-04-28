@@ -46,4 +46,13 @@ USAGE                                                           *say.nvim-usage*
 Select the text you want to read aloud in visual mode and press `<c-t>`. The
 selected text will be passed to the `say` command, and it will be read aloud
 using the specified voice.
+
+To stop the speach press `<s-c-t>`.
+
+I can press `<leader>tv` to change the voice.
+
+*Note*: You need to download the voice you want to use in System Preferences >
+Accessibility > Speech > System Voice > Customize.
+
+
 vim:tw=78:ts=8:ft=help:norl:
